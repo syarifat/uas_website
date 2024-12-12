@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('debugging', function () { #debugging
+    return view('debugging');
+});
+Route::get('template', function () { #template
+    return view('template');
+});
 
 Route::get('dashboard', function () {
     return view('project.dashboard');
@@ -17,4 +23,7 @@ Route::get('welcome', function () {
 });
 Route::get('registrasi', function () {
     return view('project.registrasi');
+});
+Route::get('tambah', function () {
+    return view('project.tambah');
 });
