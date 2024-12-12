@@ -1,50 +1,36 @@
-@extends('layout.master')
+@extends('layouts.master')
 @section('content')
-<br>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <h4>Form Input Data</h4>
-            <br>
-            @if($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-            <form action="{{route('produk.store')}}" method="POST">
-                @csrf
+            <form>
                 <div class="form-group">
-                    <label for="kode">Kode Produk <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="id" id="id">
+                    <label for="kode">Kode Produk *</label>
+                    <input class="form-control" type="text" id="id">
                 </div>
                 <div class="form-group">
-                    <label for="kode">Nama Produk <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="nama_produk" id="nama_produk">
+                    <label for="kode">Nama Produk *</label>
+                    <input class="form-control" type="text" id="nama_produk">
                 </div>
                 <div class="form-group">
-                    <label for="nama">Kategori <span class="text-danger">*</span></label><br>
-                    <select name="kategori" required>
-                        @foreach ($kategori as $category)
-                            <option value="{{$category->id}}">{{$category->nama_kategori}}</option>
-                        @endforeach
+                    <label for="nama">Kategori *</label><br>
+                    <select>
+                        <option value="">Pilih Kategori</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="kode">Harga <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="harga" id="harga">
+                    <label for="kode">Harga *</label>
+                    <input class="form-control" type="text" id="harga">
                 </div>
                 <div class="form-group">
-                    <label for="kode">Stok <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="stok" id="stock">
+                    <label for="kode">Stok *</label>
+                    <input class="form-control" type="text" id="stock">
                 </div>
                 <br>
                 <div class="form-group">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="" class="btn btn-success">Kembali</a>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a href="" class="btn btn-success">Kembali</a>
                 </div>
             </form>
         </div>

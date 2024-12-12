@@ -18,6 +18,10 @@
     </head>
 <body class="fixed-left">
     @include('layouts.navbar')
-    @yield('content')
+    <div class="content-page">
+        <div class="content">
+            @yield('content')
+        </div>
+    </div>
 </body>
 </html>
