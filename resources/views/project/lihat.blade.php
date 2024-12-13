@@ -6,7 +6,7 @@
 <br>
 <div class="container">
     <h2>Tabel Produk</h2>
-    <a href="" class="btn btn-success">+ Tambah Data</a>
+    <a href="{{route('project.tambah')}}" class="btn btn-success">+ Tambah Data</a>
     <table class="table table-bordered table-striped" id="tabel-produk">
         <thead>
             <tr>

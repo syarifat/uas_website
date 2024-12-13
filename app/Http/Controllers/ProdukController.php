@@ -17,4 +17,11 @@ class ProdukController extends Controller
         $data->delete();
         return redirect('/tambah-produk');
     }
+
+        
+    public function edit($id)
+        {
+        $data = Produk::find($id);
+            return view('produk.edit', compact('data'));
+    }
 }

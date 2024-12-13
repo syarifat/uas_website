@@ -29,5 +29,8 @@ Route::get('tambah', function () {
     return view('project.tambah');
 });
 
-Route::get('tambah-produk', [ProdukController::class, 'lihat']);
+Route::get('produk/lihat', [ProdukController::class, 'lihat'])->name('project.tambah');
 Route::post('produk/delete/{id}', [ProdukController::class, 'destroy'])->name('project.delete');
+Route::get('/produk/edit/{id}', [ProdukController::class,'edit'])->name('produk.edit');
+
+
