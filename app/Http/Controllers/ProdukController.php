@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 
@@ -23,7 +24,8 @@ class ProdukController extends Controller
             return view('project.edit', compact('data'));
     }
     public function tambah(){
-        return view('project.tambah');
+        $kategori = Kategori::all();
+        return view('project.tambah', compact('kategori'));
     }
     public function store(Request $request){
     // Validasi data
@@ -39,7 +41,7 @@ class ProdukController extends Controller
     $data = new Produk();
     $data->kode_produk = $request->kode_produk;
     $data->nama_produk = $request->nama_produk;
-    $data->kategori = $request->kategori;
+    $data->kode_kategori = $request->kategori;
     $data->harga = $request->harga;
     $data->stok = $request->stok;
     $data->save();
