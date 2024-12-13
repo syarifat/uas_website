@@ -22,9 +22,6 @@ class ProdukController extends Controller
         {
         $data = Produk::find($kode_produk);
             return view('produk.edit', compact('data'));
-<<<<<<< HEAD
-        }
-=======
     }
     public function tambah(){
         return view('project.tambah');
@@ -41,5 +38,4 @@ class ProdukController extends Controller
     return redirect()->route('produk.lihat')->with('success', 'Produk berhasil ditambahkan!');
 }
 
->>>>>>> 82b1e030bca7cd2368b5eb39b056eeded07b2e98
 }
