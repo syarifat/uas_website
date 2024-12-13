@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProdukController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,3 +28,5 @@ Route::get('registrasi', function () {
 Route::get('tambah', function () {
     return view('project.tambah');
 });
+
+Route::get('tambah-produk', [ProdukController::class, 'lihat']);
