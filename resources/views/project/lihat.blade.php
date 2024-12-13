@@ -33,8 +33,6 @@
                             <a href="{{route('project.edit', $data->kode_produk)}}" class = "btn btn-warning">Edit</a>
                             <button class = "btn btn-danger">Delete</button>
                         </form>
-                    <button class="btn btn-warning">Ubah</button>
-                    <button class="btn btn-danger">Hapus</button>
                 </td>
             </tr>
              @endforeach
