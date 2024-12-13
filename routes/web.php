@@ -36,11 +36,8 @@ Route::get('/produk/edit/{kode_produk}', [ProdukController::class,'edit'])->name
 Route::get('/produk/tambah', [ProdukController::class, 'tambah'])->name('project.tambah');
 Route::post('/tampil-produk', [ProdukController::class, 'store'])->name('project.store');
 
-<<<<<<< HEAD
 
 Route::get('/produk/edit/{kode_produk}', [KategoriController::class,'edit'])->name('project.edit');
-?>
-=======
 // Routing Kategori
 Route::controller(KategoriController::class)->group(function () {
     Route::get('/tampil-kategori', 'index')->name('kategori.index');
@@ -50,4 +47,4 @@ Route::controller(KategoriController::class)->group(function () {
     Route::post('/kategori/edit/{id}', 'update')->name('kategori.update');
     Route::post('/kategori/delete/{id}', 'destroy')->name('kategori.delete');
 });
->>>>>>> 04a3a7053b78c3791b701953d1af8f4c0bb0a1fb
+?>
