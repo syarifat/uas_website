@@ -8,7 +8,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="kode">Kode Produk *</label>
-                    <input class="form-control" type="text" name="id" id="id">
+                    <input class="form-control" type="text" name="kode_produk" id="kode_produk">
                 </div>
                 <div class="form-group">
                     <label for="kode">Nama Produk *</label>
