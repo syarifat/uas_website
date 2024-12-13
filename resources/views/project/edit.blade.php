@@ -31,7 +31,8 @@
                     <label class="form-label">Kategori</label>
                     <select class="form-control" id="kategori" name="kategori_id">
                         @foreach ($kategori as $cat)
-                            <option value="{{ $cat->id }}" {{ $cat->id == $produk->kategori_id ? 'selected' : '' }}>
+                            <option value="{{ $cat->id }}" 
+                                {{ $cat->id == $produk->kategori_id ? 'selected' : '' }}>
                                 {{ $cat->nama_kategori }}
                             </option>
                         @endforeach

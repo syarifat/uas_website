@@ -35,4 +35,6 @@ Route::get('/produk/edit/{kode_produk}', [ProdukController::class,'edit'])->name
 Route::get('/produk/tambah', [ProdukController::class, 'tambah'])->name('project.tambah');
 Route::post('/tampil-produk', [ProdukController::class, 'store'])->name('project.store');
 
+
+Route::get('/produk/edit/{kode_produk}', [KategoriController::class,'edit'])->name('project.edit');
 ?>

@@ -20,6 +20,7 @@ class ProdukController extends Controller
     
     public function edit($kode_produk){
         $data = Produk::find($kode_produk);
+        $kategoris = Kategori::all();
             return view('project.edit', compact('data'));
     }
     public function tambah(){
@@ -45,6 +46,7 @@ class ProdukController extends Controller
     $data->save();
 
     return redirect()->route('project.lihat')->with('success', 'Produk berhasil ditambahkan!');
+
 }
 
 }
