@@ -29,12 +29,12 @@
                 <td>{{ number_format($data->harga, 0, ',', '.') }}</td>
                 <td>{{ $data->stok }}</td>
                 <td>
-                    <form action="{{ route('project.delete', $data->kode_produk) }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger">Hapus</button>
-                    </form>
-                    <a href="{{ route('produk.edit', $data->kode_produk) }}" class="btn btn-warning">Ubah</a>
+                    <form action="{{route('project.delete', $data->kode_produk)}}" method="post">@csrf
+                            <a href="{{route('project.edit', $data->kode_produk)}}" class = "btn btn-warning">Edit</a>
+                            <button class = "btn btn-danger">Delete</button>
+                        </form>
+                    <button class="btn btn-warning">Ubah</button>
+                    <button class="btn btn-danger">Hapus</button>
                 </td>
             </tr>
              @endforeach

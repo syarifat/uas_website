@@ -29,8 +29,10 @@ Route::get('tambah', function () {
     return view('project.tambah');
 });
 
-Route::get('produk/lihat', [ProdukController::class, 'lihat'])->name('project.tambah');
-Route::post('produk/delete/{kode_produk}', [ProdukController::class, 'destroy'])->name('project.delete');
-Route::get('/produk/edit/{id}', [ProdukController::class,'edit'])->name('project.edit');
+Route::get('/produk/lihat', [ProdukController::class, 'lihat'])->name('project.lihat');
+Route::post('/produk/delete/{kode_produk}', [ProdukController::class, 'destroy'])->name('prpject.delete');
+Route::get('/produk/edit/{kode_produk}', [ProdukController::class,'edit'])->name('project.edit');
+Route::get('/produk/tambah', [ProdukController::class, 'tambah'])->name('project.tambah');
+Route::post('/tampil-produk', [ProdukController::class, 'store'])->name('project.store');
 
-
+?>
