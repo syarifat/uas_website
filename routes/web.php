@@ -27,3 +27,5 @@ Route::get('registrasi', function () {
 Route::get('tambah', function () {
     return view('project.tambah');
 });
+
+Route::get('/produk/edit/{id}', [ProdukController::class,'edit'])->name('produk.edit');
