@@ -11,28 +11,14 @@ class ProdukController extends Controller
         $data = Produk::all();
             return view('project.lihat', ['dataProduk' => $data]);
     }
-<<<<<<< HEAD
-
-    public function destroy($kode_produk){
-    $data = Produk::find($kode_produk); // Make sure to use $kode_produk
-    if ($data) {
-=======
     public function destroy($kode_produk){
         $data = Produk::find($kode_produk);
->>>>>>> 565c1afece8819643569263a2a06ff774f7c7555
         $data->delete();
         return redirect()->route('project.lihat'); // Redirect to the product list
-    } else {
-        return redirect()->route('project.lihat')->with('error', 'Produk tidak ditemukan');
     }
-    }
-<<<<<<< HEAD
 
-
-    public function edit($id)
-=======
+    
     public function edit($kode_produk)
->>>>>>> 565c1afece8819643569263a2a06ff774f7c7555
         {
         $data = Produk::find($kode_produk);
             return view('produk.edit', compact('data'));
