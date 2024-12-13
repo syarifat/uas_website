@@ -41,7 +41,7 @@ Route::get('/produk/edit/{kode_produk}', [KategoriController::class,'edit'])->na
 // Routing Kategori
 Route::controller(KategoriController::class)->group(function () {
     Route::get('/tampil-kategori', 'index')->name('kategori.index');
-    Route::get('/tambah-kategori', 'create')->name('kategori.create');
+    Route::get('/tambah-kategori', 'create')->name('kategori.tambah');
     Route::post('/tampil-kategori', 'store')->name('kategori.store');
     Route::get('/kategori/edit/{id}', 'edit')->name('kategori.edit');
     Route::post('/kategori/edit/{id}', 'update')->name('kategori.update');
