@@ -16,6 +16,8 @@ class ProdukController extends Controller
         $data->delete();
         return redirect()->route('project.lihat'); // Redirect to the product list
     }
+
+    
     public function edit($kode_produk)
         {
         $data = Produk::find($kode_produk);
