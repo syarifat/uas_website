@@ -12,13 +12,17 @@ class ProdukController extends Controller
             return view('project.lihat', ['dataProduk' => $data]);
     }
 
-    public function destroy($id){
-        $data = Produk::find($id);
+    public function destroy($kode_produk){
+    $data = Produk::find($kode_produk); // Make sure to use $kode_produk
+    if ($data) {
         $data->delete();
-        return redirect('/tambah-produk');
+        return redirect()->route('project.lihat'); // Redirect to the product list
+    } else {
+        return redirect()->route('project.lihat')->with('error', 'Produk tidak ditemukan');
+    }
     }
 
-        
+
     public function edit($id)
         {
         $data = Produk::find($id);

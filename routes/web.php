@@ -30,7 +30,7 @@ Route::get('tambah', function () {
 });
 
 Route::get('produk/lihat', [ProdukController::class, 'lihat'])->name('project.tambah');
-Route::post('produk/delete/{id}', [ProdukController::class, 'destroy'])->name('project.delete');
-Route::get('/produk/edit/{id}', [ProdukController::class,'edit'])->name('produk.edit');
+Route::post('produk/delete/{kode_produk}', [ProdukController::class, 'destroy'])->name('project.delete');
+Route::get('/produk/edit/{id}', [ProdukController::class,'edit'])->name('project.edit');
 
 
