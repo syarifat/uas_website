@@ -15,11 +15,11 @@
                     <input class="form-control" type="text" name="nama_produk" id="nama_produk">
                 </div>
                 <div class="form-group">
-                    <label for="kategori">Kategori *</label>
-                    <select name="kategori" class="form-control">
-                        <option value="">Pilih Kategori</option>
-                        <option value="elektronik">Elektronik</option>
-                        <option value="furniture">Furniture</option>
+                    <label for="nama">Kategori *<span class="text-danger">*</span> </label><br>
+                    <select name="kategori" required>
+                        @foreach ($kategori as $category)
+                            <option value="{{ $category->id }}">{{ $category->nama_kategori }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
