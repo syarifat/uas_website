@@ -28,8 +28,8 @@
                 <td>{{ number_format($data->harga, 0, ',', '.') }}</td>
                 <td>{{ $data->stock }}</td>
                 <td>
-                    <form action="{{route('produk.delete', $data->id)}}" method="post">@csrf
-                            <a href="{{route('produk.edit', $data->id)}}" class = "btn btn-warning">Edit</a>
+                    <form action="{{route('project.delete', $data->kode_produk)}}" method="post">@csrf
+                            <a href="{{route('project.edit', $data->kode_produk)}}" class = "btn btn-warning">Edit</a>
                             <button class = "btn btn-danger">Delete</button>
                         </form>
                     <button class="btn btn-warning">Ubah</button>
