@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-public function edit($id)
-    {
-        $data = Produk::find($id);
-        return view('produk.edit', compact('data'));
-    }
-=======
 <?php
 
 namespace App\Http\Controllers;
@@ -19,4 +12,9 @@ class ProdukController extends Controller
             return view('project.lihat', ['dataProduk' => $data]);
     }
 }
->>>>>>> 66de5f15088da49ccc8ec736573b1a588bea7c80
+
+    public function edit($id)
+    {
+        $data = Produk::find($id);
+        return view('produk.edit', compact('data'));
+    }

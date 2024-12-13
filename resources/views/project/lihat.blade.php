@@ -28,7 +28,7 @@
                 <td>{{ number_format($data->harga, 0, ',', '.') }}</td>
                 <td>{{ $data->stock }}</td>
                 <td>
-                    <button class="btn btn-warning">Ubah</button>
+                    <a href="{{ route('produk.edit', $data->id}}" class="btn btn-warning">Ubah</a>
                     <button class="btn btn-danger">Hapus</button>
                 </td>
             </tr>
