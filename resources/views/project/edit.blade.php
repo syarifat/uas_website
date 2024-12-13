@@ -16,7 +16,7 @@
                 </ul>
             </div>
             @endif
-            <form action="{{ route('produk.update', $produk->id) }}" method="POST">
+            <form action="{{ route('project.update', $produk->kode_produk) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -48,7 +48,7 @@
                 <br>
                 <div>
                     <button type="submit" class="btn btn-primary">Ubah</button>
-                    <a href="{{ route('produk.index') }}" class="btn btn-success">Kembali</a>
+                    <a href="{{ route('project.lihat') }}" class="btn btn-success">Kembali</a>
                 </div>
             </form>
         </div>

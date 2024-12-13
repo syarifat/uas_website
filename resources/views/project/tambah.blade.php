@@ -11,29 +11,31 @@
                     <input class="form-control" type="text" name="kode_produk" id="kode_produk">
                 </div>
                 <div class="form-group">
-                    <label for="kode">Nama Produk *</label>
-                    <input class="form-control" type="text" id="nama_produk" id="nama_produk">
+                    <label for="nama">Nama Produk *</label>
+                    <input class="form-control" type="text" name="nama_produk" id="nama_produk">
                 </div>
                 <div class="form-group">
-                    <label for="nama">Kategori *</label><br>
-                    <select>
+                    <label for="kategori">Kategori *</label>
+                    <select name="kategori" class="form-control">
                         <option value="">Pilih Kategori</option>
+                        <option value="elektronik">Elektronik</option>
+                        <option value="furniture">Furniture</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="kode">Harga *</label>
-                    <input class="form-control" type="text" name="harga "id="harga">
+                    <label for="harga">Harga *</label>
+                    <input class="form-control" type="text" name="harga" id="harga">
                 </div>
                 <div class="form-group">
-                    <label for="kode">Stok *</label>
+                    <label for="stok">Stok *</label>
                     <input class="form-control" type="text" name="stok" id="stok">
                 </div>
                 <br>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="" class="btn btn-success">Kembali</a>
+                    <a href="{{ route('project.lihat') }}" class="btn btn-success">Kembali</a>
                 </div>
-            </form>
+            </form>                     
         </div>
     </div>
 </div>
