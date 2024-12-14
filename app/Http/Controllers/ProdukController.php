@@ -10,23 +10,23 @@ class ProdukController extends Controller
 {
     public function lihat(){
         $data = Produk::all();
-            return view('project.lihat', ['dataProduk' => $data]);
+            return view('produk.lihat', ['dataProduk' => $data]);
     }
     public function destroy($kode_produk){
         $data = Produk::find($kode_produk);
         $data->delete();
-        return redirect()->route('project.lihat'); // Redirect to the product list
+        return redirect()->route('produk.lihat'); // Redirect to the product list
     }
 
     
     public function edit($kode_produk){
         $data = Produk::find($kode_produk);
         $kategoris = Kategori::all();
-            return view('project.edit', compact('data'));
+            return view('produk.edit', compact('data'));
     }
     public function tambah(){
         $kategori = Kategori::all();
-        return view('project.tambah', compact('kategori'));
+        return view('produk.tambah', compact('kategori'));
     }
     public function store(Request $request){
     // Validasi data
@@ -47,7 +47,7 @@ class ProdukController extends Controller
     $data->stok = $request->stok;
     $data->save();
 
-    return redirect()->route('project.lihat')->with('success', 'Produk berhasil ditambahkan!');
+    return redirect()->route('produk.lihat')->with('success', 'Produk berhasil ditambahkan!');
 
 }
 

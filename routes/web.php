@@ -10,31 +10,24 @@ Route::get('/', function () {
 Route::get('debugging', function () { #debugging
     return view('debugging');
 });
-Route::get('template', function () { #template
-    return view('template');
-});
-
-Route::get('dashboard', function () {
-    return view('project.dashboard');
+Route::get('dashboard-admin', function () {
+    return view('dashboards.dashboard_admin');
 });
 Route::get('login', function () {
-    return view('project.login');
+    return view('auth.login');
 });
-Route::get('welcome', function () {
-    return view('project.welcome');
+Route::get('dashboards', function () {
+    return view('dashboard.welcome');
 });
 Route::get('registrasi', function () {
-    return view('project.registrasi');
-});
-Route::get('tambah', function () {
-    return view('project.tambah');
+    return view('auth.registrasi');
 });
 
-Route::get('/produk/lihat', [ProdukController::class, 'lihat'])->name('project.lihat');
-Route::post('/produk/delete/{kode_produk}', [ProdukController::class, 'destroy'])->name('project.delete');
-Route::get('/produk/edit/{kode_produk}', [ProdukController::class,'edit'])->name('project.edit');
-Route::get('/produk/tambah', [ProdukController::class, 'tambah'])->name('project.tambah');
-Route::post('/tampil-produk', [ProdukController::class, 'store'])->name('project.store');
+Route::get('/produk-lihat', [ProdukController::class, 'lihat'])->name('produk.lihat');
+Route::post('/produk/delete/{kode_produk}', [ProdukController::class, 'destroy'])->name('produk.delete');
+Route::get('/produk/edit/{kode_produk}', [ProdukController::class,'edit'])->name('produk.edit');
+Route::get('/produk/tambah', [ProdukController::class, 'tambah'])->name('produk.tambah');
+Route::post('/tampil-produk', [ProdukController::class, 'store'])->name('produk.store');
 
 
 Route::get('/produk/edit/{kode_produk}', [KategoriController::class,'edit'])->name('project.edit');

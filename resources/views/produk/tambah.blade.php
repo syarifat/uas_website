@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-6">
             <h4>Form Input Data</h4>
-            <form action="{{route('project.store')}}" method="POST">
+            <form action="{{route('produk.store')}}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="kode">Kode Produk *</label>
@@ -17,9 +17,11 @@
                 <div class="form-group">
                     <label for="nama">Kategori *<span class="text-danger">*</span> </label><br>
                     <select name="kategori" required>
-                        @foreach ($kategori as $category)
+                        <option value="">Listrik</option>
+                        <option value="">Tang</option>
+                        {{-- @foreach ($kategori as $category)
                             <option value="{{ $category->id }}">{{ $category->nama_kategori }}</option>
-                        @endforeach
+                        @endforeach --}}
                     </select>
                 </div>
                 <div class="form-group">
@@ -33,7 +35,7 @@
                 <br>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{ route('project.lihat') }}" class="btn btn-success">Kembali</a>
+                    <a href="{{ route('produk.lihat') }}" class="btn btn-success">Kembali</a>
                 </div>
             </form>                     
         </div>

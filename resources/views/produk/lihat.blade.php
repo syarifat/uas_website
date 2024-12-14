@@ -6,7 +6,7 @@
 <br>
 <div class="container">
     <h2>Tabel Produk</h2>
-    <a href="{{route('project.tambah')}}" class="btn btn-success">+ Tambah Data</a>
+    <a href="{{route('produk.tambah')}}" class="btn btn-success">+ Tambah Data</a>
     <table class="table table-bordered table-striped" id="tabel-produk">
         <thead>
             <tr>
@@ -29,8 +29,8 @@
                 <td>{{ number_format($data->harga, 0, ',', '.') }}</td>
                 <td>{{ $data->stok }}</td>
                 <td>
-                    <form action="{{route('project.delete', $data->kode_produk)}}" method="post">@csrf
-                            <a href="{{route('project.edit', $data->kode_produk)}}" class = "btn btn-warning">Edit</a>
+                    <form action="{{route('produk.delete', $data->kode_produk)}}" method="post">@csrf
+                            <a href="{{route('produk.edit', $data->kode_produk)}}" class = "btn btn-warning">Edit</a>
                             <button class = "btn btn-danger">Delete</button>
                         </form>
                 </td>
