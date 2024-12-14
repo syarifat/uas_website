@@ -14,9 +14,9 @@ return new class extends Migration
     Schema::create('produk', function (Blueprint $table) {
         $table->string('kode_produk', 5)->primary(); // Kolom kode_produk, panjang 5 karakter
         $table->string('nama_produk', 50); // Kolom nama_produk, panjang 50 karakter
-        $table->string('kategori', 5); // Kolom kategori, panjang 5 karakter
-        $table->integer('harga')->unsigned(); // Kolom harga, integer tanpa tanda
-        $table->integer('stok')->unsigned(); // Kolom stok, integer tanpa tanda
+        $table->string('kode_kategori', 5); // Kolom kategori, panjang 5 karakter
+        $table->integer('harga'); // Kolom harga, integer tanpa tanda
+        $table->integer('stok'); // Kolom stok, integer tanpa tanda
         $table->timestamps(); // Kolom created_at dan updated_at
     });  
 }
