@@ -13,6 +13,6 @@ class Kategori extends Model
     protected $fillable = ['kode_kategori', 'nama_kategori'];
 
     public function produk(){
-        return $this->hasMany(Produk::class);
+        return $this->hasMany(Produk::class, 'kode_kategori', 'kode_kategori');
     }
 }

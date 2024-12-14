@@ -16,35 +16,31 @@
                 </ul>
             </div>
             @endif
-            <form action="{{ route('produk.update', $produk->kode_produk) }}" method="POST">
+            <form action="{{ route('produk.update', $data->kode_produk) }}" method="POST">
                 @csrf
-                @method('PUT')
                 <div class="form-group">
                     <label for="kode">Kode Produk <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="kode_produk" id="kode_produk" value="{{ $produk->kode_produk }}">
+                    <input class="form-control" type="text" name="kode_produk" id="kode_produk" value="{{ $data->kode_produk }}">
                 </div>
                 <div class="form-group">
                     <label for="nama">Nama Produk <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="nama_produk" id="nama_produk" value="{{ $produk->nama_produk }}">
+                    <input class="form-control" type="text" name="nama_produk" id="nama_produk" value="{{ $data->nama_produk }}">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Kategori</label>
-                    <select class="form-control" id="kategori" name="kategori_id">
-                        @foreach ($kategori as $cat)
-                            <option value="{{ $cat->id }}" 
-                                {{ $cat->id == $produk->kategori_id ? 'selected' : '' }}>
-                                {{ $cat->nama_kategori }}
-                            </option>
+                    <label for="kategori">Kategori *</label><br>
+                    <select name="kategori" required>
+                        @foreach ($kategori as $category)
+                            <option value="{{ $category->kode_kategori }}">{{ $category->nama_kategori }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="harga">Harga <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="harga" id="harga" value="{{ $produk->harga }}">
+                    <input class="form-control" type="text" name="harga" id="harga" value="{{ $data->harga }}">
                 </div>
                 <div class="form-group">
                     <label for="stok">Stok <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="stok" id="stok" value="{{ $produk->stok }}">
+                    <input class="form-control" type="text" name="stok" id="stok" value="{{ $data->stok }}">
                 </div>
                 <br>
                 <div>

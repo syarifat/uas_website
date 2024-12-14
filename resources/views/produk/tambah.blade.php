@@ -4,33 +4,31 @@
     <div class="row">
         <div class="col-md-6">
             <h4>Form Input Data</h4>
-            <form action="{{route('produk.store')}}" method="POST">
+            <form action="{{ route('produk.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="kode">Kode Produk *</label>
-                    <input class="form-control" type="text" name="kode_produk" id="kode_produk">
+                    <input class="form-control" type="text" name="kode_produk" id="kode_produk" required>
                 </div>
                 <div class="form-group">
                     <label for="nama">Nama Produk *</label>
-                    <input class="form-control" type="text" name="nama_produk" id="nama_produk">
+                    <input class="form-control" type="text" name="nama_produk" id="nama_produk" required>
                 </div>
                 <div class="form-group">
-                    <label for="nama">Kategori *<span class="text-danger">*</span> </label><br>
+                    <label for="kategori">Kategori *</label><br>
                     <select name="kategori" required>
-                        <option value="">Listrik</option>
-                        <option value="">Tang</option>
-                        {{-- @foreach ($kategori as $category)
-                            <option value="{{ $category->id }}">{{ $category->nama_kategori }}</option>
-                        @endforeach --}}
+                        @foreach ($kategori as $category)
+                            <option value="{{ $category->kode_kategori }}">{{ $category->nama_kategori }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="harga">Harga *</label>
-                    <input class="form-control" type="text" name="harga" id="harga">
+                    <input class="form-control" type="number" name="harga" id="harga" required>
                 </div>
                 <div class="form-group">
                     <label for="stok">Stok *</label>
-                    <input class="form-control" type="text" name="stok" id="stok">
+                    <input class="form-control" type="number" name="stok" id="stok" required>
                 </div>
                 <br>
                 <div class="form-group">

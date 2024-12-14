@@ -26,11 +26,12 @@ Route::get('registrasi', function () {
 Route::get('/produk-lihat', [ProdukController::class, 'lihat'])->name('produk.lihat');
 Route::post('/produk/delete/{kode_produk}', [ProdukController::class, 'destroy'])->name('produk.delete');
 Route::get('/produk/edit/{kode_produk}', [ProdukController::class,'edit'])->name('produk.edit');
+Route::post('/produk/edit/{kode_produk}', [ProdukController::class, 'update'])->name('produk.update');
 Route::get('/produk/tambah', [ProdukController::class, 'tambah'])->name('produk.tambah');
-Route::post('/tampil-produk', [ProdukController::class, 'store'])->name('produk.store');
+Route::post('/produk/tambah', [ProdukController::class, 'store'])->name('produk.store');
 
 
-Route::get('/produk/edit/{kode_produk}', [KategoriController::class,'edit'])->name('project.edit');
+// Route::get('/produk/edit/{kode_produk}', [KategoriController::class,'edit'])->name('project.edit');
 // Routing Kategori
 Route::controller(KategoriController::class)->group(function () {
     Route::get('/tampil-kategori', 'index')->name('kategori.index');
