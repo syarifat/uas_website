@@ -16,13 +16,12 @@
                 </ul>
             </div>
             @endif
-            <form action="{{route('kategori.update', $data->id)}}" method="POST">
+            <form action="{{route('kategori.update', $data->kode_kategori)}}" method="POST">
                 @csrf
-                @method('PUT')
                 <div class="form-group">
                     <label for="kode">Kode Kategori <span class="text-danger">*</span> </label>
-                    <input class="form-control" type="text" name="id" id="id"
-                    value="{{$data->id}}">
+                    <input class="form-control" type="text" name="kode_kategori" id="kode_kategori"
+                    value="{{$data->kode_kategori}}">
                 </div>
                 <div class="form-group">
                     <label for="nama_kategori">Nama Kategori <span class="text-danger">*</span></label>
@@ -31,7 +30,7 @@
                 <br>
                 <div>
                     <button type="submit" class="btn btn-primary">Ubah</button>
-                    <a href="{{route('kategori.lihat')}}" class="btn btn-success">Kembali</a>
+                    <a href="{{route('kategori.index')}}" class="btn btn-success">Kembali</a>
                 </div>
             </form>
         </div>

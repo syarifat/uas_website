@@ -23,7 +23,7 @@ class ProdukController extends Controller
     public function edit($kode_produk){
         $data = Produk::find($kode_produk);
         $kategori = Kategori::all();
-        return view('produk.edit', compact('data', 'kategori'));
+        return view('produk.edit', ['data' => $data, 'kat' => $kategori]);
     }
 
     public function tambah(){
@@ -57,10 +57,11 @@ class ProdukController extends Controller
     public function update(Request $request, $kode_produk){
         $data = Produk::find($kode_produk);
         $data->nama_produk = $request->nama_produk;
+        $data->kode_kategori = $request->kategori;
         $data->harga = $request->harga;
         $data->stok = $request->stok;
         $data->update();
-        return redirect('/produk/tambah');
+        return redirect('/produk/tambah')->with('success', 'Data berhasil diubah');
     }
 
 

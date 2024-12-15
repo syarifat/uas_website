@@ -6,7 +6,7 @@
 <br>
 <div class="container">
     <h2>Tabel Kategori</h2>
-    <a href="{{route('kategori.create')}}" class="btn btn-success">+New Data</a>
+    <a href="{{route('kategori.tambah')}}" class="btn btn-success">+New Data</a>
     <table class="table table-bordered table stripped" id="tabel-kategori">
         <thead>
             <tr>
@@ -23,8 +23,8 @@
                 <td> {{ $data->kode_kategori }}</td>
                 <td> {{ $data->nama_kategori }}</td>
                 <td>
-                    <form action="{{route('kategori.delete', $data->id)}}" method= "post">@csrf
-                        <a href="{{route('kategori.edit', $data->id)}}" class = "btn btn-warning">Edit</a>
+                    <form action="{{route('kategori.delete', $data->kode_kategori)}}" method= "post">@csrf
+                        <a href="{{route('kategori.edit', $data->kode_kategori)}}" class = "btn btn-warning">Edit</a>
                         <button class = "btn btn-danger">Delete</button>
                     </form>
                 </td>

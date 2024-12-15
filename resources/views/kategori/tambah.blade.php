@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{ route('kategori.lihat') }}" class="btn btn-success">Kembali</a>
+                    <a href="{{ route('kategori.index') }}" class="btn btn-success">Kembali</a>
                 </div>
             </form>                     
         </div>

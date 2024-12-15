@@ -27,10 +27,13 @@
                     <input class="form-control" type="text" name="nama_produk" id="nama_produk" value="{{ $data->nama_produk }}">
                 </div>
                 <div class="form-group">
-                    <label for="kategori">Kategori *</label><br>
-                    <select name="kategori" required>
-                        @foreach ($kategori as $category)
-                            <option value="{{ $category->kode_kategori }}">{{ $category->nama_kategori }}</option>
+                    <label class="form-label">Kategori</label>
+                    <select class="form-control" id="kategori" name="kategori" required>
+                        @foreach ($kat as $cat)
+                            <option value="{{ $cat->kode_kategori }}" 
+                                {{ $cat->kode_kategori == $data->kode_kategori ? 'selected' : '' }}>
+                                {{ $cat->nama_kategori }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
