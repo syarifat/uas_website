@@ -1,11 +1,10 @@
 {{-- <!DOCTYPE html>
 <html lang="en">
-<head>
+<head
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaksi</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">/head>
 <body> --}}
 @extends('layouts.master')
 @section('content')
@@ -43,12 +42,13 @@
                             <th>Jumlah</th>
                         </tr>
                     </thead>
-                    <tbody id="cart-items">
+                    <tbody id="cartTableBody">
                         <tr>
                             <td colspan="2">Keranjang kosong.</td>
                         </tr>
                     </tbody>
                 </table>
+                
                 <button id="btn-checkout" class="btn btn-success mt-3 w-100">Beli</button>
             </div>
         </div>
@@ -95,37 +95,47 @@
 
         // Fungsi untuk menambahkan barang ke keranjang
         function addToCart(id, nama) {
-            const existing = cart.find(item => item.id === id);
+    // Cari barang berdasarkan nama
+    const existing = cart.find(item => item.nama === nama);
 
-            if (existing) {
-                existing.jumlah += 1; // Jika barang sudah ada di keranjang, tambah jumlahnya
-            } else {
-                cart.push({ id, nama, jumlah: 1 });
-            }
+    if (existing) {
+        // Jika barang sudah ada, tambah jumlahnya
+        existing.jumlah += 1;
+    } else {
+        // Jika barang baru, tambahkan ke keranjang
+        cart.push({ id, nama, jumlah: 1 });
+    }
 
-            updateCartView();
-        }
+    // Perbarui tampilan tabel
+    updateCartView();
+}
 
-        // Fungsi untuk memperbarui tampilan keranjang
-        function updateCartView() {
-            let html = '';
+function updateCartView() {
+    const tableBody = document.getElementById("cartTableBody");
+    tableBody.innerHTML = ""; // Kosongkan isi tabel terlebih dahulu
 
-            if (cart.length > 0) {
-                cart.forEach(item => {
-                    html += `
-                        <tr>
-                            <td>${item.nama}</td>
-                            <td>${item.jumlah}</td>
-                        </tr>`;
-                });
-            } else {
-                html = '<tr><td colspan="2">Keranjang kosong.</td></tr>';
-            }
+    if (cart.length === 0) {
+        // Jika keranjang kosong, tampilkan pesan
+        const emptyRow = document.createElement("tr");
+        emptyRow.innerHTML = `<td colspan="2">Keranjang kosong.</td>`;
+        tableBody.appendChild(emptyRow);
+    } else {
+        // Jika ada barang, tambahkan ke tabel
+        cart.forEach(item => {
+            const row = document.createElement("tr");
 
-            document.getElementById('cart-items').innerHTML = html;
-        }
+            const nameCell = document.createElement("td");
+            nameCell.textContent = item.nama;
 
-        // Event listener untuk tombol Checkout
+            const quantityCell = document.createElement("td");
+            quantityCell.textContent = item.jumlah;
+
+            row.appendChild(nameCell);
+            row.appendChild(quantityCell);
+            tableBody.appendChild(row);
+        });
+    }
+}        // Event listener untuk tombol Checkout
         document.getElementById('btn-checkout').addEventListener('click', function() {
             if (cart.length === 0) {
                 alert('Keranjang masih kosong!');

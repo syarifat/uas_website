@@ -22,7 +22,7 @@
         <div id="sidebar-menu">
             <ul>
                 <li>
-                    <a href="#" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a>
+                    <a href="{{route('dashboard')}}" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a>
                 </li>
                 <li>
                     <a href="{{url('transaksi')}}" class="waves-effect"><i class="ti-home"></i><span> Pembelian </span></a>

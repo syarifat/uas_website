@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\TransaksiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -12,7 +13,7 @@ Route::get('debugging', function () { #debugging
 });
 Route::get('dashboard-admin', function () {
     return view('dashboards.dashboard_admin');
-});
+})->name('dashboard');
 Route::get('login', function () {
     return view('auth.login');
 });
@@ -35,8 +36,6 @@ Route::post('/produk/tambah', [ProdukController::class, 'store'])->name('produk.
 Route::get('/produk/cari', [ProdukController::class, 'cariProduk'])->name('produk.cari');
 Route::post('/transaksi/simpan', [ProdukController::class, 'simpanTransaksi'])->name('transaksi.simpan');
 
-
-
 // Route::get('/produk/edit/{kode_produk}', [KategoriController::class,'edit'])->name('project.edit');
 // Routing Kategori
 Route::controller(KategoriController::class)->group(function () {
@@ -47,4 +46,6 @@ Route::controller(KategoriController::class)->group(function () {
     Route::post('/kategori/edit/{kode_kategori}', 'update')->name('kategori.update');
     Route::post('/kategori/delete/{kode_kategori}', 'destroy')->name('kategori.delete');
 });
-?>
+
+// Routing Transaksi
+Route::post('/checkout', [TransaksiController::class, 'checkout'])->name('checkout');
