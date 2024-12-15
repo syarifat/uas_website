@@ -35,6 +35,8 @@ Route::get('/produk/tambah', [ProdukController::class, 'tambah'])->name('produk.
 Route::post('/produk/tambah', [ProdukController::class, 'store'])->name('produk.store');
 Route::get('/produk/cari', [ProdukController::class, 'cariProduk'])->name('produk.cari');
 Route::post('/transaksi/simpan', [ProdukController::class, 'simpanTransaksi'])->name('transaksi.simpan');
+Route::get('produk', [ProdukController::class, 'index']);
+Route::get('/produk/export/excel', [ProdukController::class, 'exportExcel'])->name('produk.excel');
 
 // Route::get('/produk/edit/{kode_produk}', [KategoriController::class,'edit'])->name('project.edit');
 // Routing Kategori
@@ -45,7 +47,8 @@ Route::controller(KategoriController::class)->group(function () {
     Route::get('/kategori/edit/{kode_kategori}', 'edit')->name('kategori.edit');
     Route::post('/kategori/edit/{kode_kategori}', 'update')->name('kategori.update');
     Route::post('/kategori/delete/{kode_kategori}', 'destroy')->name('kategori.delete');
+    // Routing Transaksi
+    Route::post('/checkout', [TransaksiController::class, 'checkout'])->name('checkout');
 });
 
-// Routing Transaksi
-Route::post('/checkout', [TransaksiController::class, 'checkout'])->name('checkout');
+
