@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Models\Produk;
+use App\Models\Transaksi;
+use App\Models\DetailTransaksi;
 
 class ProdukController extends Controller
 {
@@ -63,6 +65,61 @@ class ProdukController extends Controller
         $data->update();
         return redirect('/produk/tambah')->with('success', 'Data berhasil diubah');
     }
+
+    public function cariProduk(Request $request)
+{
+    $search = $request->query('search');
+    if (!$search) {
+        return response()->json([]);
+    }
+
+    $results = Produk::where('nama_produk', 'like', "%{$search}%")->get();
+    return response()->json($results);
+}
+
+    
+    public function simpanTransaksi(Request $request)
+    {
+    $keranjang = $request->keranjang;
+
+    if (empty($keranjang)) {
+        return response()->json(['message' => 'Keranjang kosong!'], 400);
+    }
+
+    $totalHarga = 0;
+
+    // Simpan data transaksi
+    $transaksi = Transaksi::create([
+        'tanggal_transaksi' => now(),
+    ]);
+
+    // Simpan detail transaksi
+    foreach ($keranjang as $item) {
+        $produk = Produk::find($item['id']);
+
+        if (!$produk) {
+            continue;
+        }
+
+        // Kurangi stok
+        $produk->stok -= $item['jumlah'];
+        $produk->save();
+
+        $totalHarga += $produk->harga * $item['jumlah'];
+
+        DetailTransaksi::create([
+            'transaksi_id' => $transaksi->id,
+            'produk_id' => $produk->id,
+            'jumlah' => $item['jumlah'],
+            'harga' => $produk->harga,
+        ]);
+    }
+
+    $transaksi->total = $totalHarga;
+    $transaksi->save();
+
+    return response()->json(['message' => 'Transaksi berhasil disimpan!', 'transaksi' => $transaksi]);
+}
 
 
 }

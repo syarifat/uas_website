@@ -16,11 +16,14 @@ Route::get('dashboard-admin', function () {
 Route::get('login', function () {
     return view('auth.login');
 });
-Route::get('dashboards', function () {
-    return view('dashboard.welcome');
+Route::get('welcome', function () {
+    return view('dashboards.welcome');
 });
 Route::get('registrasi', function () {
     return view('auth.registrasi');
+});
+Route::get('transaksi', function () {
+    return view('dashboards/transaksi');
 });
 
 Route::get('/produk-lihat', [ProdukController::class, 'lihat'])->name('produk.lihat');
@@ -29,6 +32,9 @@ Route::get('/produk/edit/{kode_produk}', [ProdukController::class,'edit'])->name
 Route::post('/produk/edit/{kode_produk}', [ProdukController::class, 'update'])->name('produk.update');
 Route::get('/produk/tambah', [ProdukController::class, 'tambah'])->name('produk.tambah');
 Route::post('/produk/tambah', [ProdukController::class, 'store'])->name('produk.store');
+Route::get('/produk/cari', [ProdukController::class, 'cariProduk'])->name('produk.cari');
+Route::post('/transaksi/simpan', [ProdukController::class, 'simpanTransaksi'])->name('transaksi.simpan');
+
 
 
 // Route::get('/produk/edit/{kode_produk}', [KategoriController::class,'edit'])->name('project.edit');

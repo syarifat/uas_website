@@ -12,7 +12,7 @@
             </div>
             <div class="user-info">
                 <div class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Kenny Rigdon</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Silvy Kumalasari</a>
                 </div>
                 <form action="{{url('page')}}">
                     <button type="submit" class="btn btn-danger logout-button position-absolute top-0 end-0 mt-3 me-3">Keluar</button>
@@ -22,7 +22,10 @@
         <div id="sidebar-menu">
             <ul>
                 <li>
-                    <a href="index.html" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a>
+                    <a href="#" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a>
+                </li>
+                <li>
+                    <a href="{{url('transaksi')}}" class="waves-effect"><i class="ti-home"></i><span> Pembelian </span></a>
                 </li>
                 <li>
                     <a href="{{route('produk.lihat')}}" class="waves-effect"><i class="ti-home"></i><span> Kelola Barang </span></a>
