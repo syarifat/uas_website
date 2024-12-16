@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanProdukController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,6 +35,8 @@ Route::get('/produk/tambah', [ProdukController::class, 'tambah'])->name('produk.
 Route::post('/produk/tambah', [ProdukController::class, 'store'])->name('produk.store');
 Route::get('/produk/cari', [ProdukController::class, 'cariProduk'])->name('produk.cari');
 Route::post('/transaksi/simpan', [ProdukController::class, 'simpanTransaksi'])->name('transaksi.simpan');
+Route::get('produk', [ProdukController::class, 'index']);
+Route::get('/produk/export/excel', [ProdukController::class, 'exportExcel'])->name('produk.excel');
 
 
 
@@ -47,4 +50,6 @@ Route::controller(KategoriController::class)->group(function () {
     Route::post('/kategori/edit/{kode_kategori}', 'update')->name('kategori.update');
     Route::post('/kategori/delete/{kode_kategori}', 'destroy')->name('kategori.delete');
 });
+
+Route::get('/laporan/produk', [LaporanProdukController::class, 'index']);
 ?>
