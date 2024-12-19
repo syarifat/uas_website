@@ -12,15 +12,16 @@ class DetailTransaksi extends Model
     protected $table = 'detail_transaksi';
 
     protected $fillable = [
-        'transaksi_id',
-        'produk_id',
+        'id_transaksi',
+        'id_produk',
         'jumlah',
         'harga',
+        'nama_produk',
     ];
 
     public function transaksi()
     {
-        return $this->belongsTo(Transaksi::class, 'transaksi_id');
+        return $this->belongsTo(Transaksi::class, 'id_transaksi');
     }
 
     public function produk()
@@ -28,3 +29,4 @@ class DetailTransaksi extends Model
         return $this->belongsTo(Produk::class, 'produk_id');
     }
 }
+

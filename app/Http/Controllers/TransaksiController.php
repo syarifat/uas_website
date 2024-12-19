@@ -3,37 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Produk;
+use DB;
 
 class TransaksiController extends Controller
 {
-    public function checkout(Request $request)
+        public function index()
     {
-        $cart = $request->input('cart');
+        $transaksiData = DB::table('detail_transaksi')
+            ->join('transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
+            ->select(
+                'detail_transaksi.id_transaksi',
+                'detail_transaksi.nama_produk',
+                'detail_transaksi.jumlah',
+                'detail_transaksi.harga',
+                'transaksi.nama_pembeli',
+                'transaksi.tanggal_transaksi',  // Menambahkan tanggal transaksi
+                'transaksi.nama_pembeli',        // Nama pembeli
+                'transaksi.nama_kasir'           // Nama kasir
+            )
+            ->get();
 
-        if (!$cart || !is_array($cart)) {
-            return response()->json(['message' => 'Keranjang kosong atau tidak valid'], 400);
+        // Menambahkan kolom Total Harga
+        foreach ($transaksiData as $data) {
+            $data->total_harga = $data->jumlah * $data->harga;  // Hitung total harga (jumlah * harga per pcs)
         }
 
-        foreach ($cart as $item) {
-            // Cari produk berdasarkan ID
-            $produk = Produk::find($item['id']);
-
-            if (!$produk) {
-                return response()->json(['message' => "Produk dengan ID {$item['id']} tidak ditemukan"], 404);
-            }
-
-            // Periksa apakah stok cukup
-            if ($produk->stok < $item['jumlah']) {
-                return response()->json(['message' => "Stok untuk produk {$produk->nama_produk} tidak cukup"], 400);
-            }
-
-            // Kurangi stok
-            $produk->stok -= $item['jumlah'];
-            $produk->save();
-        }
-
-        return response()->json(['message' => 'Transaksi berhasil!']);
+        return view('transaksi.index', compact('transaksiData'));
     }
-}
 
+}
