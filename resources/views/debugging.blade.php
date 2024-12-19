@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaksi</title>
+</head>
+<body>
 @extends('layouts.master')
 @section('content')
     <div class="row mt-4">
@@ -13,6 +21,7 @@
                     <tr>
                         <th>Nama Barang</th>
                         <th>Stok</th>
+                        <th>Harga/pcs</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -32,25 +41,120 @@
                     <tr>
                         <th>Nama Barang</th>
                         <th>Jumlah</th>
+                        <th>Harga</th>
+                        <th>Total Harga</th>
+                        <th>Tanggal dan Jam</th>
                     </tr>
                 </thead>
                 <tbody id="cartTableBody">
                     <tr>
-                        <td colspan="2">Keranjang kosong.</td>
+                        <td colspan="5">Keranjang kosong.</td>
                     </tr>
                 </tbody>
             </table>
-            <button id="btn-checkout" class="btn btn-success mt-3 w-100">Beli</button>
+            
+            <button id="btn-checkout" class="btn btn-success mt-3 w-100" onclick="checkout()">Beli</button>
         </div>
     </div>
 
     <script>
-        let cart = []; // Array untuk menyimpan data keranjang
+        let cart = []; // Keranjang belanja
 
-        // Event listener untuk tombol Search
-        document.getElementById('btn-search').addEventListener('click', function () {
+        // Fungsi untuk memperbarui tampilan keranjang
+        function updateCartView() {
+            const cartTableBody = document.getElementById("cartTableBody");
+            cartTableBody.innerHTML = ''; // Clear table
+
+            if (cart.length === 0) {
+                cartTableBody.innerHTML = '<tr><td colspan="5">Keranjang kosong.</td></tr>';
+            } else {
+                let totalBelanja = 0;
+
+                cart.forEach(item => {
+                    const totalHarga = item.harga * item.jumlah;
+                    totalBelanja += totalHarga;
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.nama}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-sm btn-minus" data-id="${item.kode}">-</button>
+                            <span id="jumlah-${item.kode}">${item.jumlah}</span>
+                            <button type="button" class="btn btn-primary btn-sm btn-plus" data-id="${item.kode}">+</button>
+                        </td>
+                        <td>Rp ${item.harga.toLocaleString()}</td> <!-- Menampilkan harga per pcs -->
+                        <td>Rp ${totalHarga.toLocaleString()}</td>
+                        <td>${new Date().toLocaleString()}</td>
+                    `;
+                    cartTableBody.appendChild(row);
+                });
+
+                // Menambahkan baris total belanja
+                const totalRow = document.createElement('tr');
+                totalRow.innerHTML = `
+                    <td colspan="3"><strong>Total Belanja</strong></td>
+                    <td colspan="2"><strong>Rp ${totalBelanja.toLocaleString()}</strong></td>
+                `;
+                cartTableBody.appendChild(totalRow);
+            }
+        }
+
+        // Fungsi untuk menyimpan data keranjang ke LocalStorage
+        function saveProdukToLocalStorage() {
+            const cartData = JSON.stringify(cart);
+            localStorage.setItem('cart', cartData);
+        }
+
+        // Fungsi untuk memperbarui jumlah barang di keranjang
+        function updateQuantity(kode, change) {
+            const item = cart.find(item => item.kode === parseInt(kode));
+
+            if (item) {
+                item.jumlah += change;
+
+                if (item.jumlah < 1) {
+                    cart = cart.filter(item => item.kode !== parseInt(kode));
+                } else {
+                    const jumlahElement = document.getElementById(`jumlah-${kode}`);
+                    if (jumlahElement) {
+                        jumlahElement.textContent = item.jumlah;
+                    }
+                }
+
+                updateCartView();
+                saveProdukToLocalStorage();
+            }
+        }
+
+        // Fungsi untuk menambahkan produk ke keranjang
+        function addToCart(kode, nama, harga, buttonElement) {
+            const existing = cart.find(item => item.nama === nama);
+
+            if (existing) {
+                existing.jumlah += 1;
+            } else {
+                cart.push({ kode, nama, harga, jumlah: 1 });
+            }
+
+            buttonElement.disabled = true;
+            buttonElement.textContent = 'Sudah Dipilih';
+
+            updateCartView();
+            saveProdukToLocalStorage();
+        }
+
+        // Event listener untuk menangani klik tombol +/- pada keranjang
+        document.addEventListener('click', function(e) {
+            if (e.target && (e.target.classList.contains('btn-minus') || e.target.classList.contains('btn-plus'))) {
+                const kode = e.target.getAttribute('data-id');
+                const change = e.target.classList.contains('btn-minus') ? -1 : 1;
+                updateQuantity(kode, change);
+            }
+        });
+
+        // Event listener untuk menangani pencarian produk
+        document.getElementById('btn-search').addEventListener('click', function() {
             const query = document.getElementById('search-barang').value;
-
             if (!query) {
                 alert('Masukkan nama barang yang ingin dicari!');
                 return;
@@ -60,20 +164,25 @@
                 .then(response => response.json())
                 .then(results => {
                     let html = '';
-
                     if (results.length > 0) {
                         results.forEach(item => {
+                            const isSelected = cart.find(cartItem => cartItem.nama === item.nama_produk);
                             html += `
                                 <tr>
                                     <td>${item.nama_produk}</td>
                                     <td>${item.stok}</td>
+                                    <td>Rp ${item.harga.toLocaleString()}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-primary" onclick="addToCart(${item.id}, '${item.nama_produk}')">Pilih</button>
+                                        <button class="btn btn-sm btn-primary" 
+                                                onclick="addToCart(${item.kode_produk}, '${item.nama_produk}', ${item.harga}, this)"
+                                                ${isSelected ? 'disabled' : ''}>
+                                            ${isSelected ? 'Sudah Dipilih' : 'Pilih'}
+                                        </button>
                                     </td>
                                 </tr>`;
                         });
                     } else {
-                        html = '<tr><td colspan="3">Tidak ada barang ditemukan.</td></tr>';
+                        html = '<tr><td colspan="4">Tidak ada barang ditemukan.</td></tr>';
                     }
 
                     document.getElementById('search-results').innerHTML = html;
@@ -83,83 +192,61 @@
                 });
         });
 
-        // Fungsi untuk menambahkan barang ke keranjang
-        function addToCart(id, nama) {
-            const existing = cart.find(item => item.nama === nama);
-
-            if (existing) {
-                // Jika barang sudah ada, tambah jumlahnya
-                existing.jumlah += 1;
-            } else {
-                // Jika barang baru, tambahkan ke keranjang
-                cart.push({ id, nama, jumlah: 1 });
-            }
-
-            // Perbarui tampilan tabel
-            updateCartView();
-        }
-
-        // Fungsi untuk memperbarui tampilan keranjang
-        function updateCartView() {
-            const tableBody = document.getElementById("cartTableBody");
-            tableBody.innerHTML = ""; // Kosongkan isi tabel terlebih dahulu
-
+        // Fungsi untuk melakukan checkout
+        function checkout() {
             if (cart.length === 0) {
-                // Jika keranjang kosong, tampilkan pesan
-                const emptyRow = document.createElement("tr");
-                emptyRow.innerHTML = `<td colspan="2">Keranjang kosong.</td>`;
-                tableBody.appendChild(emptyRow);
-            } else {
-                // Jika ada barang, tambahkan ke tabel
-                cart.forEach(item => {
-                    const row = document.createElement("tr");
-
-                    const nameCell = document.createElement("td");
-                    nameCell.textContent = item.nama;
-
-                    const quantityCell = document.createElement("td");
-                    quantityCell.textContent = item.jumlah;
-
-                    row.appendChild(nameCell);
-                    row.appendChild(quantityCell);
-                    tableBody.appendChild(row);
-                });
-            }
-        }
-
-        // Event listener untuk tombol Checkout
-        document.getElementById('btn-checkout').addEventListener('click', function () {
-            if (cart.length === 0) {
-                alert('Keranjang masih kosong!');
+                alert('Keranjang kosong!');
                 return;
             }
 
-            // Kirim data keranjang ke server
-            fetch('/checkout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                },
-                body: JSON.stringify({ cart }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.message) {
-                        alert(data.message);
-                    }
+            // Hitung total harga
+            let totalBelanja = cart.reduce((total, item) => total + item.harga * item.jumlah, 0);
 
-                    // Reset keranjang dan perbarui tampilan
-                    cart = [];
-                    updateCartView();
+            // Tampilkan modal konfirmasi checkout
+            document.getElementById('totalPriceModal').textContent = `Rp ${totalBelanja.toLocaleString()}`;
+            $('#checkoutModal').modal('show');
+        }
+
+        // Fungsi untuk mengonfirmasi checkout
+        function confirmCheckout() {
+            const cartData = cart.map(item => ({
+                id_barang: item.kode,
+                harga: item.harga,
+                jumlah: item.jumlah,
+                total_harga: item.harga * item.jumlah
+            }));
+
+            axios.post('/checkout', { cart: cartData })
+                .then(response => {
+                    if (response.data.success) {
+                        alert('Checkout berhasil!');
+                        cart = [];
+                        updateCartView();
+                        saveProdukToLocalStorage();
+                        $('#checkoutModal').modal('hide');
+                    } else {
+                        alert('Gagal melakukan checkout.');
+                    }
                 })
                 .catch(error => {
-                    console.error('Terjadi kesalahan:', error);
-                    alert('Terjadi kesalahan saat memproses transaksi.');
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan, coba lagi!');
                 });
-        });
-    </script>
+        }
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+        // Memuat data keranjang dari LocalStorage
+        function loadCartFromLocalStorage() {
+            const cartData = localStorage.getItem('cart');
+            if (cartData) {
+                cart = JSON.parse(cartData);
+                updateCartView();
+            }
+        }
+
+        // Panggil fungsi ini saat halaman dimuat
+        loadCartFromLocalStorage();
+
+    </script>
 @endsection
+</body>
+</html>

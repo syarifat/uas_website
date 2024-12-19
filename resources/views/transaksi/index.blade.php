@@ -17,7 +17,6 @@
                 <th style="width:10%">Total Harga</th>
                 <th style="width:10%">Tanggal</th>
                 <th style="width:10%">Nama Kasir</th>
-                <th style="width:15%">Nama Pembeli</th>
             </tr>
         </thead>
         <tbody>
@@ -25,13 +24,12 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $data->id_transaksi }}</td>
-                <td>{{ $data->nama_produk }}</td>
+                <td>{{ $data->produk->nama_produk }}</td> <!-- Nama produk dari join -->
                 <td>{{ $data->jumlah }}</td>
                 <td>{{ number_format($data->harga, 0, ',', '.') }}</td>
-                <td>{{ number_format($data->total_harga, 0, ',', '.') }}</td> <!-- Total Harga -->
+                <td>{{ number_format($data->total_harga, 0, ',', '.') }}</td>
                 <td>{{ \Carbon\Carbon::parse($data->tanggal_transaksi)->format('d-m-Y') }}</td> <!-- Format tanggal -->
-                <td>{{ $data->nama_kasir }}</td> <!-- Nama kasir -->
-                <td>{{ $data->nama_pembeli }}</td>
+                <td>{{ $data->kasir }}</td>
             </tr>
             @endforeach
         </tbody>
