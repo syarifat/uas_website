@@ -8,7 +8,7 @@ use App\Http\Controllers\TransaksiController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('debugging', function () { #debugging
+Route::get('debugging', function () { 
     return view('debugging');
 });
 Route::get('dashboard-admin', function () {
@@ -22,7 +22,7 @@ Route::get('welcome', function () {
 });
 Route::get('registrasi', function () {
     return view('auth.registrasi');
-});
+}); 
 Route::get('transaksi', function () {
     return view('dashboards/transaksi');
 });
@@ -48,7 +48,5 @@ Route::controller(KategoriController::class)->group(function () {
     Route::post('/kategori/edit/{kode_kategori}', 'update')->name('kategori.update');
     Route::post('/kategori/delete/{kode_kategori}', 'destroy')->name('kategori.delete');
     // Routing Transaksi
-    Route::post('/checkout', [TransaksiController::class, 'checkout'])->name('checkout');
 });
-
-
+Route::post('/checkout', [TransaksiController::class, 'checkout'])->name('checkout');
