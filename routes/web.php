@@ -52,4 +52,3 @@ Route::controller(KategoriController::class)->group(function () {
 
 Route::get('/transaksi', [TransaksiController::class, 'index']);
 Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
-Route::post('/checkout', [CheckoutController::class, 'store']);
