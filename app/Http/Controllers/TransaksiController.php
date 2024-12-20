@@ -10,13 +10,13 @@ use Carbon\Carbon;
 
 class TransaksiController extends Controller
 {
-    public function index()
+    public function transaksi()
     {
         // Ambil data transaksi dan join dengan produk untuk mendapatkan nama produk
         $transaksiData = Transaksi::with('produk')->get();
 // 
         // Kembalikan view dengan data transaksi
-        return view('debugging', compact('transaksiData'));
+        return view('produk.transaksi', compact('transaksiData'));
     }
     public function search(Request $request)
     {
@@ -96,7 +96,7 @@ class TransaksiController extends Controller
         $transaksiData = Transaksi::with('produk')->get();
 
         // Kembalikan view dengan data transaksi
-        return view('transaksi.index', compact('transaksiData'));
+        return view('laporan.kategori', compact('transaksiData'));
     }
 
     public function store(Request $request)

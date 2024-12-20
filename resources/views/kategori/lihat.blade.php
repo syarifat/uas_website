@@ -6,7 +6,7 @@
 <br>
 <div class="container">
     <h2>Tabel Kategori</h2>
-    <a href="{{route('kategori.tambah')}}" class="btn btn-success">+New Data</a>
+    <a href="{{route('kategori.tambah')}}" class="btn btn-success">Tambah Kategori</a>
     <table class="table table-bordered table stripped" id="tabel-kategori">
         <thead>
             <tr>

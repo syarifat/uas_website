@@ -31,10 +31,10 @@
                     <a href="{{route('produk.lihat')}}" class="waves-effect"><i class="ti-home"></i><span> Kelola Barang </span></a>
                 </li>
                 <li>
-                    <a href="{{route('kategori.index')}}" class="waves-effect"><i class="ti-home"></i><span> Kelola Kategori </span></a>
+                    <a href="{{route('kategori.lihat')}}" class="waves-effect"><i class="ti-home"></i><span> Kelola Kategori </span></a>
                 </li>
                 <li>
-                    <a href="#" class="waves-effect"><i class="ti-home"></i><span> Laporan </span></a>
+                    <a href="{{route('dashboards.pagelaporan')}}" class="waves-effect"><i class="ti-home"></i><span> Laporan </span></a>
                 </li>
             </ul>
         </div>

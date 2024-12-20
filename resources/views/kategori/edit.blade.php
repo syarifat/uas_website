@@ -30,7 +30,7 @@
                 <br>
                 <div>
                     <button type="submit" class="btn btn-primary">Ubah</button>
-                    <a href="{{route('kategori.index')}}" class="btn btn-success">Kembali</a>
+                    <a href="{{route('kategori.lihat')}}" class="btn btn-success">Kembali</a>
                 </div>
             </form>
         </div>
