@@ -28,7 +28,7 @@
                 <td>{{ $data->jumlah }}</td>
                 <td>{{ number_format($data->harga, 0, ',', '.') }}</td>
                 <td>{{ number_format($data->total_harga, 0, ',', '.') }}</td>
-                <td>{{ \Carbon\Carbon::parse($data->tanggal_transaksi)->format('d-m-Y') }}</td> <!-- Format tanggal -->
+                <td>{{ \Carbon\Carbon::parse($data->tanggal_transaksi)->timezone('Asia/Jakarta')->format('d-m-Y') }}</td> <!-- Format tanggal -->
                 <td>{{ $data->kasir }}</td>
             </tr>
             @endforeach
