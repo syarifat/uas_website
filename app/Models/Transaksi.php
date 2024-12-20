@@ -28,4 +28,5 @@ class Transaksi extends Model
     {
         return $this->belongsTo(Produk::class, 'kode_produk', 'kode_produk');
     }
+    
 }
