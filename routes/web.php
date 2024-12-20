@@ -4,13 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\DashboardController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('dashboard-admin', function () {
-    return view('dashboards.dashboard_admin');
-})->name('dashboard');
 Route::get('login', function () {
     return view('auth.login');
 });
@@ -54,8 +53,11 @@ Route::controller(TransaksiController::class)->group(function () {
     Route::get('/produk/cari', 'search');
     Route::post('/checkout', 'checkout');
     Route::get('/transaksi', 'transaksi') ->name('produk.transaksi');
-    Route::post('/transaksi', 'store');
+    Route::post('/transaksi', 'store')->name('transaksi.store');
     Route::get('/get-harga/{kode_produk}', 'getHarga');
     Route::get('/get-products', 'getProducts')->name('get.products');
     Route::get('/produk/autocomplete', 'autocomplete')->name('produk.autocomplete');
 });
+
+Route::get('/api/chart-data', [DashboardController::class, 'getChartData']);
+Route::get('/dashboard-admin', [DashboardController::class, 'getInformation'])->name('dashboard');

@@ -123,5 +123,5 @@ class TransaksiController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Checkout berhasil!']);
     }
-
+    
 }
