@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('content')
     <div class="row mt-4">
-        <!-- Kolom Kiri: Pencarian dan Pemilihan Barang -->
         <div class="col-md-6">
             <h3>Cari Barang</h3>
             <div class="input-group mb-3">
@@ -24,8 +23,6 @@
                 </tbody>
             </table>
         </div>
-
-        <!-- Kolom Kanan: Keranjang Belanja -->
         <div class="col-md-6">
             <h3>Keranjang</h3>
             <table class="table table-striped table-bordered">
@@ -47,8 +44,6 @@
             <button id="btn-checkout" class="btn btn-success mt-3 w-100" onclick="checkout()">Beli</button>
         </div>
     </div>
-
-    <!-- Modal Konfirmasi Checkout -->
     <div class="modal" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -71,12 +66,10 @@
     </div>
 
     <script>
-        let cart = []; // Keranjang belanja
-
-        // Fungsi untuk memperbarui tampilan keranjang
+        let cart = [];
         function updateCartView() {
             const cartTableBody = document.getElementById("cartTableBody");
-            cartTableBody.innerHTML = ''; // Clear table
+            cartTableBody.innerHTML = '';
 
             if (cart.length === 0) {
                 cartTableBody.innerHTML = '<tr><td colspan="5">Keranjang kosong.</td></tr>';
@@ -102,7 +95,7 @@
                     cartTableBody.appendChild(row);
                 });
 
-                // Menambahkan baris total belanja
+            
                 const totalRow = document.createElement('tr');
                 totalRow.innerHTML = `
                     <td colspan="3"><strong>Total Belanja</strong></td>
@@ -112,13 +105,13 @@
             }
         }
 
-        // Fungsi untuk menyimpan data keranjang ke LocalStorage
+    
         function saveProdukToLocalStorage() {
             const cartData = JSON.stringify(cart);
             localStorage.setItem('cart', cartData);
         }
 
-        // Fungsi untuk memperbarui jumlah barang di keranjang
+    
         function updateQuantity(kode, change) {
             const item = cart.find(item => item.kode === parseInt(kode));
 
@@ -139,7 +132,7 @@
             }
         }
 
-        // Fungsi untuk menambahkan produk ke keranjang
+    
         function addToCart(kode, nama, harga, buttonElement) {
             const existing = cart.find(item => item.nama === nama);
 
@@ -156,7 +149,7 @@
             saveProdukToLocalStorage();
         }
 
-        // Event listener untuk menangani klik tombol +/- pada keranjang
+    
         document.addEventListener('click', function(e) {
             if (e.target && (e.target.classList.contains('btn-minus') || e.target.classList.contains('btn-plus'))) {
                 const kode = e.target.getAttribute('data-id');
@@ -165,7 +158,7 @@
             }
         });
 
-        // Event listener untuk menangani pencarian produk
+    
         document.getElementById('btn-search').addEventListener('click', function() {
             const query = document.getElementById('search-barang').value;
             if (!query) {
@@ -204,23 +197,27 @@
                     console.error('Terjadi kesalahan:', error);
                 });
         });
-
-        // Fungsi untuk melakukan checkout
         function checkout() {
             if (cart.length === 0) {
                 alert('Keranjang kosong!');
                 return;
             }
 
-            // Hitung total harga
+            // Hitung total harga belanja
             let totalBelanja = cart.reduce((total, item) => total + item.harga * item.jumlah, 0);
 
-            // Tampilkan modal konfirmasi checkout
-            document.getElementById('totalPriceModal').textContent = `Rp ${totalBelanja.toLocaleString()}`;
-            $('#checkoutModal').modal('show');
+            // Update teks di dalam elemen modal
+            const totalPriceModal = document.getElementById('totalPriceModal');
+            totalPriceModal.textContent = `Rp ${totalBelanja.toLocaleString()}`;
+
+            // Tampilkan modal dengan Bootstrap
+            const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'), {
+                keyboard: false
+            });
+            checkoutModal.show();
         }
 
-        // Fungsi untuk mengonfirmasi checkout
+    
         function confirmCheckout() {
             const cartData = cart.map(item => ({
                 kode_produk: item.kode,
@@ -247,7 +244,7 @@
                 });
         }
 
-        // Memuat data keranjang dari LocalStorage
+    
         function loadCartFromLocalStorage() {
             const cartData = localStorage.getItem('cart');
             if (cartData) {
@@ -256,7 +253,9 @@
             }
         }
 
-        // Panggil fungsi ini saat halaman dimuat
-        loadCartFromLocalStorage();
+    
+        // loadCartFromLocalStorage();
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 @endsection
