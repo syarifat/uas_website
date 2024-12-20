@@ -12,9 +12,9 @@ class KategoriController extends Controller
     //     $data = Produk::find($kode_kategori);
     //         return view('project.edit', ['data' =>$data,'kat' =>$kategoris]);
     // }
-    public function index(){
+    public function showKategori(){
         $data = Kategori::all();
-        return view('kategori.index', ['dataKategori'=> $data]);
+        return view('kategori.lihat', ['dataKategori'=> $data]);
     }
 
     public function create(){

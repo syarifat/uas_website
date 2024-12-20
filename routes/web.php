@@ -8,9 +8,6 @@ use App\Http\Controllers\TransaksiController;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('debugging', function () { 
-//     return view('debugging');
-// });
 Route::get('dashboard-admin', function () {
     return view('dashboards.dashboard_admin');
 })->name('dashboard');
@@ -23,28 +20,31 @@ Route::get('welcome', function () {
 Route::get('registrasi', function () {
     return view('auth.registrasi');
 }); 
+Route::get('pagelaporan', function () {
+    return view('dashboards.pagelaporan');
+})->name('dashboards.pagelaporan');
 
-Route::get('/produk-lihat', [ProdukController::class, 'lihat'])->name('produk.lihat');
-Route::post('/produk/delete/{kode_produk}', [ProdukController::class, 'destroy'])->name('produk.delete');
-Route::get('/produk/edit/{kode_produk}', [ProdukController::class,'edit'])->name('produk.edit');
-Route::post('/produk/edit/{kode_produk}', [ProdukController::class, 'update'])->name('produk.update');
-Route::get('/produk/tambah', [ProdukController::class, 'tambah'])->name('produk.tambah');
-Route::post('/produk/tambah', [ProdukController::class, 'store'])->name('produk.store');
-// Route::get('/produk/cari', [ProdukController::class, 'cariProduk'])->name('produk.cari');
-Route::post('/transaksi/simpan', [ProdukController::class, 'simpanTransaksi'])->name('transaksi.simpan');
-Route::get('produk', [ProdukController::class, 'index']);
-Route::get('/produk/export/excel', [ProdukController::class, 'exportExcel'])->name('produk.excel');
+// Routing Produk
+Route::controller(ProdukController::class)->group(function() {
+    Route::get('/produk-lihat', 'lihat')->name('produk.lihat');
+    Route::post('/produk/delete/{kode_produk}', 'destroy')->name('produk.delete');
+    Route::get('/produk/edit/{kode_produk}', 'edit')->name('produk.edit');
+    Route::post('/produk/edit/{kode_produk}', 'update')->name('produk.update');
+    Route::get('/produk/tambah', 'tambah')->name('produk.tambah');
+    Route::post('/produk/tambah', 'store')->name('produk.store');
+    Route::post('/transaksi/simpan', 'simpanTransaksi')->name('transaksi.simpan');
+    Route::get('/laporan-produk', 'showLaporan')->name('laporan.produk');
+    Route::get('/produk/export/excel', 'exportExcel')->name('produk.excel');
+});
 
-// Route::get('/produk/edit/{kode_produk}', [KategoriController::class,'edit'])->name('project.edit');
 // Routing Kategori
 Route::controller(KategoriController::class)->group(function () {
-    Route::get('/tampil-kategori', 'index')->name('kategori.index');
+    Route::get('/tampil-kategori', 'showKategori')->name('kategori.lihat');
     Route::get('/tambah-kategori', 'create')->name('kategori.tambah');
     Route::post('/tampil-kategori', 'store')->name('kategori.store');
     Route::get('/kategori/edit/{kode_kategori}', 'edit')->name('kategori.edit');
     Route::post('/kategori/edit/{kode_kategori}', 'update')->name('kategori.update');
     Route::post('/kategori/delete/{kode_kategori}', 'destroy')->name('kategori.delete');
-    // Routing Transaksi
 });
 
 Route::get('/transaksi', [TransaksiController::class, 'index']);
@@ -64,3 +64,15 @@ Route::get('/get-harga/{kode_produk}', [TransaksiController::class, 'getHarga'])
 // routes/web.php
 Route::get('/get-products', [TransaksiController::class, 'getProducts'])->name('get.products');
 Route::get('/produk/autocomplete', [TransaksiController::class, 'autocomplete'])->name('produk.autocomplete');
+// Routing Transaksi
+Route::controller(TransaksiController::class)->group(function () {
+    Route::get('/laporan-transaksi', 'showlaporan')->name('laporan.transaksi');
+    Route::post('/transaksi/store', 'store')->name('transaksi.store');
+    Route::get('/produk/cari', 'search');
+    Route::post('/checkout', 'checkout');
+    Route::get('/transaksi', 'transaksi') ->name('produk.transaksi');
+    Route::post('/transaksi', 'store');
+    Route::get('/get-harga/{kode_produk}', 'getHarga');
+    Route::get('/get-products', 'getProducts')->name('get.products');
+    Route::get('/produk/autocomplete', 'autocomplete')->name('produk.autocomplete');
+});

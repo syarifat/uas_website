@@ -18,7 +18,7 @@ class ProdukController extends Controller
     return view('produk.lihat', ['dataProduk' => $data]);
     }
 
-    public function index(){
+    public function showLaporan(){
     $produk = Produk::all(); // Mengambil semua data produk
     return view('laporan.produk', compact('produk')); // Produk tetap dipassing sebagai $products
     }
@@ -129,12 +129,12 @@ class ProdukController extends Controller
 
         $totalHarga += $produk->harga * $item['jumlah'];
 
-        DetailTransaksi::create([
-            'transaksi_id' => $transaksi->id,
-            'produk_id' => $produk->id,
-            'jumlah' => $item['jumlah'],
-            'harga' => $produk->harga,
-        ]);
+        // DetailTransaksi::create([
+        //     'transaksi_id' => $transaksi->id,
+        //     'produk_id' => $produk->id,
+        //     'jumlah' => $item['jumlah'],
+        //     'harga' => $produk->harga,
+        // ]);
     }
 
     $transaksi->total = $totalHarga;
