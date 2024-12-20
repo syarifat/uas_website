@@ -41,4 +41,15 @@ class TransaksiController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Checkout berhasil!']);
     }
+
+    public function getChartData()
+    {
+    $data = DB::table('transaksi')
+        ->select(DB::raw('DATE(tanggal) as tanggal'), DB::raw('SUM(total_harga) as total'))
+        ->groupBy('tanggal')
+        ->orderBy('tanggal')
+        ->get();
+
+    return response()->json($data);
+    }
 }
