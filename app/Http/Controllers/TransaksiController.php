@@ -96,7 +96,7 @@ class TransaksiController extends Controller
         $transaksiData = Transaksi::with('produk')->get();
 
         // Kembalikan view dengan data transaksi
-        return view('laporan.kategori', compact('transaksiData'));
+        return view('laporan.transaksi', compact('transaksiData'));
     }
 
     public function store(Request $request)

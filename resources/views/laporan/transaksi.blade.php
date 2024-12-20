@@ -5,7 +5,7 @@
 @section('content')
 <br>
 <div class="container">
-    <h2>Transaksi Summary</h2>
+    <h2>Laporan Transaksi</h2>
     <table class="table table-bordered table-striped" id="tabel-transaksi">
         <thead>
             <tr>
