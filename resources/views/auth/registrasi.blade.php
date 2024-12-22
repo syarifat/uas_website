@@ -66,7 +66,7 @@
       <div class="register-form ms-5">
         <h3 class="mb-4 text-dark fw-bold">Registration Page</h3>
         
-        <form action="{{url('dashboard')}}" method="POST">
+        <form action="{{url('dashboard-admin')}}" method="GET">
           <div class="mb-3">
             <div class="input-group">
               <input type="text" name="username" class="form-control" placeholder="Username" required>

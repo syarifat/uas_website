@@ -6,6 +6,8 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Laravel\Fortify\Fortify;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,6 +59,7 @@ Route::controller(TransaksiController::class)->group(function () {
     Route::get('/get-harga/{kode_produk}', 'getHarga');
     Route::get('/get-products', 'getProducts')->name('get.products');
     Route::get('/produk/autocomplete', 'autocomplete')->name('produk.autocomplete');
+    Route::get('/transaksi/export/excel', 'exportExcel')->name('transaksi.excel');
 });
 
 Route::get('/api/chart-data', [DashboardController::class, 'getChartData']);

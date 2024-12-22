@@ -7,6 +7,8 @@ use App\Models\Transaksi;
 use App\Models\Produk;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Exports\TransaksiExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransaksiController extends Controller
 {
@@ -122,6 +124,10 @@ class TransaksiController extends Controller
         }
 
         return response()->json(['success' => true, 'message' => 'Checkout berhasil!']);
+    }
+    
+    public function exportExcel(){
+        return Excel::download(new TransaksiExport, 'laporan_transaksi.xlsx');
     }
     
 }
