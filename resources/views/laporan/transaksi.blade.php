@@ -47,7 +47,8 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <!-- Tombol Export ke Excel di Bawah Tabel -->
+
+    <!-- Tombol Export ke Excel di Bawah Tabel -->
     <div class="mt-3 text-right">
         <a href="{{ route('transaksi.excel') }}" class="btn btn-success">
             Export ke Excel

@@ -6,6 +6,9 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Laravel\Fortify\Fortify;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,6 +45,19 @@ Route::get('pagelaporan', function () {
 //         Route::post('/kategori/edit/{kode_kategori}', 'update')->name('kategori.update');
 //         Route::post('/kategori/delete/{kode_kategori}', 'destroy')->name('kategori.delete');
 //     });
+// Routing Transaksi
+Route::controller(TransaksiController::class)->group(function () {
+    Route::get('/laporan-transaksi', 'showlaporan')->name('laporan.transaksi');
+    Route::post('/transaksi/store', 'store')->name('transaksi.store');
+    Route::get('/produk/cari', 'search');
+    Route::post('/checkout', 'checkout');
+    Route::get('/transaksi', 'transaksi') ->name('produk.transaksi');
+    Route::post('/transaksi', 'store')->name('transaksi.store');
+    Route::get('/get-harga/{kode_produk}', 'getHarga');
+    Route::get('/get-products', 'getProducts')->name('get.products');
+    Route::get('/produk/autocomplete', 'autocomplete')->name('produk.autocomplete');
+    Route::get('/transaksi/export/excel', 'exportExcel')->name('transaksi.excel');
+});
 
 //     // Routing Transaksi
 //     Route::controller(TransaksiController::class)->group(function () {

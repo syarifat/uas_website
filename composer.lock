@@ -321,6 +321,7 @@
             "time": "2024-08-09T14:30:48+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "defuse/php-encryption",
             "version": "v2.4.0",
             "source": {
@@ -388,6 +389,8 @@
             "time": "2023-06-19T06:10:36+00:00"
         },
         {
+=======
+>>>>>>> 9a0ba78b735aa2e4dece2b537c84f133e258fa7b
             "name": "dflydev/dot-access-data",
             "version": "v3.0.3",
             "source": {
@@ -2804,16 +2807,16 @@
         },
         {
             "name": "maatwebsite/excel",
-            "version": "3.1.60",
+            "version": "3.1.61",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SpartnerNL/Laravel-Excel.git",
-                "reference": "4906dc57fbe6a41c405a77e1f7cac9078982c9c7"
+                "reference": "62616317c5ec07e885c5d7f6b537f57a7239c2ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SpartnerNL/Laravel-Excel/zipball/4906dc57fbe6a41c405a77e1f7cac9078982c9c7",
-                "reference": "4906dc57fbe6a41c405a77e1f7cac9078982c9c7",
+                "url": "https://api.github.com/repos/SpartnerNL/Laravel-Excel/zipball/62616317c5ec07e885c5d7f6b537f57a7239c2ff",
+                "reference": "62616317c5ec07e885c5d7f6b537f57a7239c2ff",
                 "shasum": ""
             },
             "require": {
@@ -2869,7 +2872,7 @@
             ],
             "support": {
                 "issues": "https://github.com/SpartnerNL/Laravel-Excel/issues",
-                "source": "https://github.com/SpartnerNL/Laravel-Excel/tree/3.1.60"
+                "source": "https://github.com/SpartnerNL/Laravel-Excel/tree/3.1.61"
             },
             "funding": [
                 {
@@ -2881,7 +2884,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-11T12:27:45+00:00"
+            "time": "2024-11-25T18:41:59+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
@@ -3570,6 +3573,7 @@
             "time": "2024-11-21T10:39:51+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "nyholm/psr7",
             "version": "1.8.2",
             "source": {
@@ -3648,6 +3652,8 @@
             "time": "2024-09-09T07:06:30+00:00"
         },
         {
+=======
+>>>>>>> 9a0ba78b735aa2e4dece2b537c84f133e258fa7b
             "name": "paragonie/constant_time_encoding",
             "version": "v3.0.0",
             "source": {
@@ -3715,6 +3721,7 @@
             "time": "2024-05-08T12:36:18+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "paragonie/random_compat",
             "version": "v9.99.100",
             "source": {
@@ -3765,6 +3772,8 @@
             "time": "2020-10-15T08:29:30+00:00"
         },
         {
+=======
+>>>>>>> 9a0ba78b735aa2e4dece2b537c84f133e258fa7b
             "name": "phpoffice/phpspreadsheet",
             "version": "1.29.6",
             "source": {
@@ -3945,6 +3954,7 @@
             "time": "2024-07-20T21:41:07+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "phpseclib/phpseclib",
             "version": "3.0.43",
             "source": {
@@ -4055,6 +4065,8 @@
             "time": "2024-12-14T21:12:59+00:00"
         },
         {
+=======
+>>>>>>> 9a0ba78b735aa2e4dece2b537c84f133e258fa7b
             "name": "pragmarx/google2fa",
             "version": "v8.0.3",
             "source": {
@@ -9678,12 +9690,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

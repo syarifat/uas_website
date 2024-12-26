@@ -66,10 +66,7 @@
       <div class="register-form ms-5">
         <h3 class="mb-4 text-dark fw-bold">Registration Page</h3>
         
-        <form method="POST" action="{{ route('register') }}">
-          @csrf
-
-          {{-- Name --}}
+        <form action="{{url('dashboard-admin')}}" method="GET">
           <div class="mb-3">
             <div class="input-group">
               <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Full Name" value="{{ old('name') }}" required>
