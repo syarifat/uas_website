@@ -8,7 +8,7 @@
 </p>
 
 ## Manual Book
-Untuk manual book bisa akses disini[Simple, fast routing engine](https://laravel.com/docs/routing)
+Untuk manual book bisa akses [disini.](https://github.com/syarifat/uas_website/blob/main/MANUAL%20USER%20SISTEM%20INFORMASI%20PENJUALAN%20DAN%20STOK%20TOKO%20MBAK%20MIS.pdf)
 
 ## About Laravel
 
