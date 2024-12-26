@@ -14,9 +14,12 @@
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Silvy Kumalasari</a>
                 </div>
-                <form action="{{url('page')}}">
+                {{-- @if (Auth::check()) --}}
+                    {{-- <form action="{{ route('logout') }}" method="POST">
+                    @csrf --}}
                     <button type="submit" class="btn btn-danger logout-button position-absolute top-0 end-0 mt-3 me-3">Keluar</button>
-                </form>
+                    {{-- </form>
+                @endif --}}
             </div>
         </div>
         <div id="sidebar-menu">
@@ -25,10 +28,10 @@
                     <a href="{{route('dashboard')}}" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a>
                 </li>
                 <li>
-                    <a href="{{url('transaksi')}}" class="waves-effect"><i class="ti-home"></i><span> Pembelian </span></a>
+                    <a href="{{route('produk.transaksi')}}" class="waves-effect"><i class="ti-home"></i><span> Penjualan </span></a>
                 </li>
                 <li>
-                    <a href="{{route('produk.lihat')}}" class="waves-effect"><i class="ti-home"></i><span> Kelola Barang </span></a>
+                    <a href="{{route('produk.lihat')}}" class="waves-effect"><i class="ti-home"></i><span> Kelola Produk </span></a>
                 </li>
                 <li>
                     <a href="{{route('kategori.lihat')}}" class="waves-effect"><i class="ti-home"></i><span> Kelola Kategori </span></a>
@@ -41,23 +44,6 @@
         <div class="clearfix"></div>
     </div>
 </div>
-
-# Top Bar
-<div class="content-page">
-    <div class="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="page-header-title">
-                        <h4 class="pull-left page-title">Dashboard</h4>
-                        <ol class="breadcrumb pull-right">
-                            <li><a href="#">KasirKu</a></li>
-                            <li class="active">Dashboard</li>
-                        </ol>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
             @yield('content')
         </div>
     </div>

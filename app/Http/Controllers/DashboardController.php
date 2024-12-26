@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Transaksi;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -44,4 +46,24 @@ class DashboardController extends Controller
     
         return response()->json($data); // Kirimkan data dalam format JSON
     }
+
+//     public function showlaporan(Request $request)
+// {
+//     if (Auth::user()->role === 'owner') {
+//         // Logika untuk owner
+//         return view('dashboards.owner_laporan', [
+//             'data' => Transaksi::all(), // atau data spesifik
+//         ]);
+//     }
+
+//     if (Auth::user()->role === 'kasir') {
+//         // Logika untuk kasir
+//         return view('dashboards.kasir_laporan', [
+//             'data' => Transaksi::where('kasir_id', Auth::id())->get(),
+//         ]);
+//     }
+
+//     abort(403, 'Unauthorized action.');
+// }
+
 }

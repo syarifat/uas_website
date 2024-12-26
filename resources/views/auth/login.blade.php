@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
+  <title>KasirKu - Login</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
@@ -65,20 +65,21 @@
       </div>
       <div class="login-form ms-5">
         <h3 class="mb-4 text-dark fw-bold">Login Page</h3>
-        
-        <div class="mb-3">
-          <div class="input-group">
-            <input type="email" name="email" class="form-control" placeholder="Email Address">
+
+        <form method="POST" action="{{ route('login') }}">
+          @csrf
+          <div class="mb-3">
+            <div class="input-group">
+              <input type="text" name="username" id="username" class="form-control" placeholder="Username" value="{{ old('username') }}" required autofocus>
+            </div>
           </div>
-        </div>
-        <div class="mb-3">
-          <div class="input-group">
-            <input type="password" name="password" class="form-control" placeholder="Password">
+          <div class="mb-3">
+            <div class="input-group">
+              <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+            </div>
           </div>
-        </div>
-        <form action="{{url('dashboard')}}">
           <button type="submit" class="btn btn-success w-100">LOGIN</button>
-        </form>
+        </form>        
       </div>
     </div>
   </div>

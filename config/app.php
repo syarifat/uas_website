@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\FortifyServiceProvider;
+
 return [
 
     /*
@@ -123,4 +125,9 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    
+    // 'providers' => [
+    //     App\Providers\FortifyServiceProvider::class,
+    // ],
+    
 ];

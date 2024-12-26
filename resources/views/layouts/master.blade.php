@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>IniKasirku</title>
+        <title>KasirKu</title>
         <!-- Masukkan ini di bagian <head> pada layout Blade Anda -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 

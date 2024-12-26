@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login - KasirKu</title>
+    <title>KasirKu - Selamat Datang</title>
     <!-- Import Font Nunito -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
@@ -91,7 +91,10 @@
 <body>
 
 <!-- Teks KasirKu di pojok kiri atas -->
-<div class="brand-title">KasirKu</div>
+
+<div class="brand-title">
+    <img src="assets\images\logo_white.png" alt="KasirKu Logo">
+</div>
 
 <!-- Tombol Login di pojok kanan atas -->
     <form action="">
@@ -101,7 +104,6 @@
 </div>
 
 <div class="login-card">
-    <img src="{{ asset('images/rb_1200.png') }}" alt="KasirKu Logo">
     <p class="description" style="font-weight: normal;">KELOLA PENJUALAN DAN TRANSAKSI DENGAN MUDAH</p>
     <h2 class="login-title">Selamat Datang di KasirKu,</h2>
     <p class="center-text">Asisten Keuangan Pribadi Anda</p>

@@ -6,43 +6,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    use HasApiTokens;
+    // Fungsi ini akan digunakan oleh Passport untuk menemukan user berdasarkan username
+    public function findForPassport($username)
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->where('username', $username)->first();
+    }
+    protected $fillable = [
+        'name', 'username', 'password',
+    ];
+
+    // // Ganti autentikasi untuk menggunakan username
+    // public function findForPassport($username)
+    // {
+    //     return $this->where('username', $username)->first();
+    // }
+
+    // Ganti aturan autentikasi untuk menggunakan username
+    public function setUsernameAttribute($value)
+    {
+        $this->attributes['username'] = strtolower($value);
     }
 }
+

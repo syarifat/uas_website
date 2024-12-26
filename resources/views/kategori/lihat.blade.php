@@ -1,9 +1,22 @@
 @extends('layouts.master')
-
-@section('title', 'Aplikasi Laravel')
-
 @section('content')
-<br>
+{{-- Top Bar --}}
+<div class="content-page">
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header-title">
+                        <h4 class="pull-left page-title">Dashboard</h4>
+                        <ol class="breadcrumb pull-right">
+                            <li>KasirKu</li>
+                            <li class="active"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                            <li class="active"><a href="{{route('kategori.lihat')}}">Kelola Kategori</a></li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
 <div class="container">
     <h2>Tabel Kategori</h2>
     <a href="{{route('kategori.tambah')}}" class="btn btn-success">Tambah Kategori</a>

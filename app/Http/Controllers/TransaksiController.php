@@ -7,6 +7,9 @@ use App\Models\Transaksi;
 use App\Models\Produk;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Exports\TransaksiExport;
+use Maatwebsite\Excel\Facades\Excel;
+// use Illuminate\Support\Facades\Storage;
 
 class TransaksiController extends Controller
 {
@@ -66,7 +69,7 @@ class TransaksiController extends Controller
                 'harga' => $item['harga'],
                 'jumlah' => $item['jumlah'],
                 'total_harga' => $item['total_harga'],
-                'kasir' => "Ridho", // Ganti dengan nama kasir sesuai kebutuhan
+                'kasir' => "Syarif", // Ganti dengan nama kasir sesuai kebutuhan
             ]);
 
             // Kurangi stok produk
@@ -123,5 +126,7 @@ class TransaksiController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Checkout berhasil!']);
     }
-    
+    public function exportExcel(){
+        return Excel::download(new TransaksiExport, 'laporan_transaksi.xlsx');
+    }
 }

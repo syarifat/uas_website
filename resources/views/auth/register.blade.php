@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registration Page</title>
+  <title>KasirKu - Register</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
@@ -66,25 +66,53 @@
       <div class="register-form ms-5">
         <h3 class="mb-4 text-dark fw-bold">Registration Page</h3>
         
-        <form action="{{url('dashboard')}}" method="POST">
+        <form method="POST" action="{{ route('register') }}">
+          @csrf
+
+          {{-- Name --}}
           <div class="mb-3">
             <div class="input-group">
-              <input type="text" name="username" class="form-control" placeholder="Username" required>
+              <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Full Name" value="{{ old('name') }}" required>
+              @error('name')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+              @enderror
             </div>
           </div>
+
+          {{-- Username --}}
           <div class="mb-3">
             <div class="input-group">
-              <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+              <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+              @error('username')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+              @enderror
             </div>
           </div>
+
+          {{-- Password --}}
           <div class="mb-3">
             <div class="input-group">
-              <input type="password" name="password" class="form-control" placeholder="Password" required>
+              <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required>
+              @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
             </div>
           </div>
+          {{-- Confirm Password --}}
           <div class="mb-3">
             <div class="input-group">
-              <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+              <input type="password" id="password_confirmation" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Konfirmasi Password" required>
+              @error('password_confirmation')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
             </div>
           </div>
           <button type="submit" class="btn btn-primary w-100">REGISTER</button>
