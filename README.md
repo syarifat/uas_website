@@ -8,6 +8,7 @@
 </p>
 
 ## Manual Book
+Untuk manual book bisa akses disini[Simple, fast routing engine](https://laravel.com/docs/routing)
 
 ## About Laravel
 
